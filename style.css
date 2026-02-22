@@ -1,0 +1,1116 @@
+:root {
+  --primary: #65dcf1;
+  --primary-dark: #00a3cc;
+  --secondary: #1486cc;
+  --accent: #0066ff;
+  --dark-bg: #08404b;
+  --dark-card: #001d3d;
+  --darker-card: #111c2d;
+  --dark-border: #2b5b87;
+  --light-border: #118ab2;
+  --text-light: #ffffff;
+  --text-muted: #8ecae6;
+  --success: #00ff9d;
+  --warning: #ffd166;
+  --danger: #ef476f;
+  --gradient: linear-gradient(135deg, #00d9ff 0%, #0066ff 50%, #00a3cc 100%);
+  --grid-color: rgba(0, 217, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: 
+    radial-gradient(circle at 10% 20%, #16589e 0%, #021838 40%),
+    radial-gradient(circle at 90% 80%, #003566 0%, #000814 40%);
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Сетка и эффекты */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 217, 255, 0.1) 10%, transparent);
+  pointer-events: none;
+  z-index: 2;
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Анимации для иконок */
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animated-icon {
+  animation: pulse 2s infinite;
+}
+
+/* Навигация */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 8, 20, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--primary);
+  z-index: 1000;
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+}
+
+/* Логотип с пульсацией */
+.logo2 {
+  min-width: 45px;
+  width: clamp(40px, 6vw, 160px);
+  height: auto;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  z-index: 1001;
+}
+
+.logo-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+.logo-image {
+  height: 100px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  animation: pulse 3s infinite;
+}
+
+.logo:hover .logo-image {
+  transform: scale(1.05);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-main-txt {
+  padding: 0%;
+  margin-left: 12%;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo-sub {
+  padding: 4%;
+  margin-left: 8%;
+  top: 0%;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-middle {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.nav-links a::before {
+  content: '>';
+  position: absolute;
+  left: -10px;
+  color: var(--primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover::before {
+  opacity: 1;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(0, 217, 255, 0.1);
+}
+
+/* Слайдер баннеров */
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  max-height: 800px;
+  margin-top: 70px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2rem;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideContentAppear 1s forwards 0.5s;
+}
+
+@keyframes slideContentAppear {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-text {
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.slide-line {
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  margin-left: 3.5rem;
+  text-shadow: 
+    0 0 15px rgba(0, 217, 255, 0.6),
+    0 0 30px rgba(0, 217, 255, 0.3),
+    0 0 45px rgba(0, 217, 255, 0.1);
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.slide-line1 {
+  color: var(--text-light);
+  animation: slideLineAppear 0.8s forwards 0.8s;
+}
+
+.slide-line2 {
+  background: linear-gradient(135deg, #00d9ff 0%, #0066ff 50%, #00a3cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideLineAppear 0.8s forwards 1s;
+}
+
+.slide-linemin {
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-weight: 500;
+  margin-left: 6rem;
+}
+
+@keyframes slideLineAppear {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-btn {
+  display: inline-block;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.5rem 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-left: 6.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: slideBtnAppear 0.8s forwards 1.2s;
+}
+
+@keyframes slideBtnAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-btn:hover {
+  background: rgba(0, 217, 255, 0.1);
+  box-shadow: 
+    0 0 30px rgba(0, 217, 255, 0.6),
+    inset 0 0 30px rgba(0, 217, 255, 0.1);
+  transform: translateY(-3px);
+}
+/* Стили для слайда с видео */
+.slide-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Обновляем существующий .slide-overlay, чтобы он был поверх видео */
+.slide .slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Контент должен быть выше всех слоёв */
+.slide .slide-content {
+  position: relative;
+  z-index: 5;
+}
+
+/* Убедимся, что дополнительные эффекты тоже над видео */
+.slider-grid-overlay,
+.slider-scan-line {
+  z-index: 2;
+}
+
+/* Навигационные стрелки */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 29, 61, 0.5);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0.7;
+}
+
+.slider-nav:hover {
+  background: rgba(0, 217, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+  opacity: 1;
+}
+
+.slider-nav.prev {
+  left: 1rem;
+}
+
+.slider-nav.next {
+  right: 1rem;
+}
+
+/* Индикаторы слайдов */
+.slider-indicators {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.8rem;
+  z-index: 10;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator.active {
+  background: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.8);
+  transform: scale(1.2);
+}
+
+/* Общие стили секций */
+.section {
+  padding: 80px 1.5rem;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  overflow: hidden;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, var(--text-light), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Секция "О компании" */
+.about-section {
+  background: rgba(0, 12, 31, 0.3);
+  border-top: 1px solid var(--dark-border);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.stat-box {
+  background: rgba(0, 29, 61, 0.3);
+  border: 1px solid var(--dark-border);
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-box:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(0, 217, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.stat-box i {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Секция "Каталог" */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.catalog-item {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-item:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(0, 217, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.catalog-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.catalog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.catalog-item:hover .catalog-image img {
+  transform: scale(1.05);
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.catalog-header h3 {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.category-badge {
+  background: var(--gradient);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.catalog-content {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.catalog-spec {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.spec-label {
+  color: var(--text-muted);
+}
+
+.spec-value {
+  color: var(--primary);
+  font-weight: 600;
+  text-align: right;
+}
+
+.catalog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: auto;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.catalog-link:hover {
+  gap: 0.8rem;
+}
+
+/* Секция "Контакты" */
+.contacts-section {
+  background: rgba(0, 12, 31, 0.3);
+  border-top: 1px solid var(--dark-border);
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.contact-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(0, 217, 255, 0.2);
+}
+
+.contact-title {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--dark-border);
+  padding-bottom: 0.8rem;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.contact-item i {
+  color: var(--primary);
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  min-width: 20px;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.contact-value {
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.contact-value a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Секция "Заявка" */
+.request-section {
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.request-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(0, 29, 61, 0.5);
+  border: 1px solid var(--primary);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 29, 61, 0.3);
+  border: 1px solid var(--dark-border);
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background: rgba(0, 217, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+}
+
+/* Футер */
+.footer {
+  padding: 3rem 1.5rem 2rem;
+  background: var(--darker-card);
+  border-top: 2px solid var(--primary);
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.footer-desc {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.footer-title {
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--dark-border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-copyright {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.copyright-tag {
+  background: rgba(0, 217, 255, 0.1);
+  border: 1px solid var(--primary);
+  padding: 0.3rem 0.8rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--primary);
+  display: inline-block;
+}
+
+/* Кнопка прокрутки наверх */
+.scroll-to-top {
+  position: fixed;
+  bottom: 1rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 29, 61, 0.9);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background: var(--primary);
+  color: var(--dark-bg);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+}
+
+/* Системные сообщения */
+.system-message {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 8, 20, 0.95);
+  border-top: 1px solid var(--primary);
+  padding: 0.8rem;
+  z-index: 1000;
+}
+
+.message-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-align: center;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-middle {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 8, 20, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .nav-middle.active {
+    left: 0;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .nav-links a {
+    font-size: 1.1rem;
+    padding: 0.8rem 2rem;
+  }
+  
+  .logo-main-txt {
+    font-size: 1.2rem;
+  }
+  
+  .logo-sub {
+    font-size: 0.6rem;
+  }
+  
+  .logo-image {
+    height: 40px;
+  }
+  
+  .hero-slider {
+    margin-top: 60px;
+    min-height: 400px;
+    max-height: 600px;
+  }
+  
+  .slide-content {
+    padding: 0 1rem;
+  }
+  
+  .slider-nav {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .slider-nav.prev {
+    left: 0.5rem;
+  }
+  
+  .slider-nav.next {
+    right: 0.5rem;
+  }
+  
+  .slider-indicators {
+    bottom: 1.5rem;
+  }
+  
+  .section {
+    padding: 60px 1rem;
+  }
+  
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .request-form {
+    padding: 1.5rem;
+  }
+  
+  .scroll-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .slide-line {
+    font-size: 1.5rem;
+  }
+  
+  .slide-linemin {
+    font-size: 1rem;
+  }
+  
+  .slide-btn {
+    margin-left: 4.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+}

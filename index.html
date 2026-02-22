@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Макрочип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+
+<body>
+<!-- Кнопка прокрутки наверх -->
+<button class="scroll-to-top" id="scrollToTop">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- Эффекты сетки -->
+<div class="grid-overlay"></div>
+<div class="scan-line"></div>
+
+<!-- Навигация -->
+<header>
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <div class="logo-image-container">
+        <img src="/img/logo.png" class="logo-image"/>
+      </div>
+      <span class="logo-text">
+        <span class="logo-main-txt">Макрочип</span>
+        <span class="logo-sub">Технологии, которым доверяют</span>
+      </span>
+    </a>
+    
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="nav-middle">
+      <ul class="nav-links">
+        <li><a href="#about" class="active"><i class="fas fa-building animated-icon"></i> О компании</a></li>
+        <li><a href="#catalog"><i class="fas fa-boxes animated-icon"></i> Каталог</a></li>
+        <li><a href="#contacts"><i class="fas fa-address-book animated-icon"></i> Контакты</a></li>
+        <li><a href="#request"><i class="fas fa-paper-plane animated-icon"></i> Оставить заявку</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Слайдер баннеров -->
+  <section class="hero-slider">
+    <div class="slider-container">
+      <!-- Слайд 1 -->
+      <div class="slide active" style="background-image: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%), url('/img/banner1.jpg');">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-line slide-line1">БУДУЩЕЕ СИЛЬНОЙ СТРАНЫ</div>
+            <div class="slide-linemin slide-line2">за высокими технологиями</div>
+          </div>
+          <a href="#catalog" class="slide-btn">
+            <i class="fas fa-boxes animated-icon"></i> Каталог
+          </a>
+        </div>
+      </div>
+      
+      <!-- Слайд 2 -->
+      <div class="slide" style="background-image: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%), url('img/banner2.jpg');">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-line slide-line1">ПОСТАВЩИК ЭЛЕКТРОННЫХ</div>
+            <div class="slide-linemin slide-line2">компонентов в России</div>
+          </div>
+          <a href="#catalog" class="slide-btn">
+            <i class="fas fa-microchip animated-icon"></i> Найти компоненты
+          </a>
+        </div>
+      </div>
+      
+      <!-- Слайд 3 -->
+<div class="slide" id="videoSlide">
+  <!-- Фоновое видео -->
+  <video class="slide-video" autoplay muted loop playsinline poster="/img/banner3.png">
+    <source src="img/ban3.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  
+  <!-- Затемнение справа налево (градиент) поверх видео -->
+  <div class="slide-overlay" style="background: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%);"></div>
+  
+  <!-- Дополнительная сетка/эффекты (опционально) -->
+  <div class="slider-grid-overlay"></div>
+  <div class="slider-scan-line"></div>
+  
+  <!-- Контент слайда -->
+  <div class="slide-content">
+    <div class="slide-text">
+      <div class="slide-line slide-line1">БОЛЕЕ 3.5 МЛН</div>
+      <div class="slide-linemin slide-line2">позиций в каталоге</div>
+    </div>
+    <a href="#catalog" class="slide-btn">
+      <i class="fas fa-search animated-icon"></i> Подобрать
+    </a>
+  </div>
+</div>
+      
+      <!-- Навигационные стрелки -->
+      <button class="slider-nav prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="slider-nav next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      
+      <!-- Индикаторы слайдов -->
+      <div class="slider-indicators">
+        <button class="indicator active" data-slide="0"></button>
+        <button class="indicator" data-slide="1"></button>
+        <button class="indicator" data-slide="2"></button>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- Основной контент -->
+<main>
+  <!-- Секция "О компании" -->
+  <section id="about" class="section about-section">
+    <div class="section-header">
+      <h2 class="section-title">О КОМПАНИИ</h2>
+      <p class="section-subtitle">Надежный партнер в поставках электронных компонентов с 2014 года</p>
+    </div>
+    
+    <div class="about-content">
+      <div class="about-text">
+        <p>Компания «Макрочип» — это динамично развивающийся поставщик электронных компонентов, оборудования и решений для промышленности, связи и высокотехнологичных проектов. С 2014 года мы успешно работаем на российском рынке, помогая нашим клиентам реализовывать самые амбициозные проекты.</p>
+        
+        <p>Наша миссия — обеспечивать бесперебойные поставки качественной электронной компонентной базы, выступая надежным связующим звеном между мировыми производителями и российскими предприятиями. Мы понимаем, насколько критична стабильность поставок для непрерывности производственных циклов, и делаем все возможное для минимизации рисков наших партнеров.</p>
+        
+        <p>Сегодня «Макрочип» — это не просто складской оператор. Это инженерная компания, где работают технические специалисты, способные оказать консультационную поддержку, помочь с подбором аналогов, решить вопросы импортозамещения и предложить комплексные отраслевые решения.</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-box">
+          <i class="fas fa-calendar-alt animated-icon"></i>
+          <div class="stat-value">10+</div>
+          <div class="stat-label">Лет на рынке</div>
+        </div>
+        <div class="stat-box">
+          <i class="fas fa-boxes animated-icon"></i>
+          <div class="stat-value">3.5M+</div>
+          <div class="stat-label">Позиций в ассортименте</div>
+        </div>
+        <div class="stat-box">
+          <i class="fas fa-users animated-icon"></i>
+          <div class="stat-value">500+</div>
+          <div class="stat-label">Постоянных клиентов</div>
+        </div>
+        <div class="stat-box">
+          <i class="fas fa-headset animated-icon"></i>
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Техническая поддержка</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Секция "Каталог" -->
+  <section id="catalog" class="section">
+    <div class="section-header">
+      <h2 class="section-title">КАТАЛОГ</h2>
+      <p class="section-subtitle">Широкий ассортимент электронных компонентов от ведущих производителей</p>
+    </div>
+    
+    <div class="catalog-grid">
+      <div class="catalog-item">
+        <div class="catalog-image">
+          <img src="/img/pic.jpg" alt="Микроконтроллеры">
+        </div>
+        <div class="catalog-header">
+          <h3>Микроконтроллеры</h3>
+          <div class="category-badge">ПОПУЛЯРНО</div>
+        </div>
+        <div class="catalog-content">
+          <div class="catalog-spec">
+            <span class="spec-label">Производители:</span>
+            <span class="spec-value">ST, Microchip, TI</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Архитектуры:</span>
+            <span class="spec-value">ARM, AVR, PIC</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">В наличии:</span>
+            <span class="spec-value">1500+ позиций</span>
+          </div>
+          <a href="#" class="catalog-link">
+            <i class="fas fa-external-link-alt animated-icon"></i> Перейти в категорию
+          </a>
+        </div>
+      </div>
+      
+      <div class="catalog-item">
+        <div class="catalog-image">
+          <img src="/img/pic.jpg" alt="Пассивные компоненты">
+        </div>
+        <div class="catalog-header">
+          <h3>Пассивные компоненты</h3>
+          <div class="category-badge">СКЛАД</div>
+        </div>
+        <div class="catalog-content">
+          <div class="catalog-spec">
+            <span class="spec-label">Типы:</span>
+            <span class="spec-value">Резисторы, конденсаторы</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Бренды:</span>
+            <span class="spec-value">Murata, TDK, Yageo</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">В наличии:</span>
+            <span class="spec-value">5000+ позиций</span>
+          </div>
+          <a href="#" class="catalog-link">
+            <i class="fas fa-external-link-alt animated-icon"></i> Перейти в категорию
+          </a>
+        </div>
+      </div>
+      
+      <div class="catalog-item">
+        <div class="catalog-image">
+          <img src="/img/pic.jpg" alt="Силовая электроника">
+        </div>
+        <div class="catalog-header">
+          <h3>Силовая электроника</h3>
+          <div class="category-badge">НОВИНКА</div>
+        </div>
+        <div class="catalog-content">
+          <div class="catalog-spec">
+            <span class="spec-label">Компоненты:</span>
+            <span class="spec-value">Транзисторы, драйверы</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Бренды:</span>
+            <span class="spec-value">Infineon, ON Semi, ST</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">В наличии:</span>
+            <span class="spec-value">3000+ позиций</span>
+          </div>
+          <a href="#" class="catalog-link">
+            <i class="fas fa-external-link-alt animated-icon"></i> Перейти в категорию
+          </a>
+        </div>
+      </div>
+      
+      <div class="catalog-item">
+        <div class="catalog-image">
+          <img src="/img/pic.jpg" alt="Оптоэлектроника">
+        </div>
+        <div class="catalog-header">
+          <h3>Оптоэлектроника</h3>
+          <div class="category-badge">СКЛАД</div>
+        </div>
+        <div class="catalog-content">
+          <div class="catalog-spec">
+            <span class="spec-label">Типы:</span>
+            <span class="spec-value">Светодиоды, датчики</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Бренды:</span>
+            <span class="spec-value">Osram, Vishay, Lite-On</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">В наличии:</span>
+            <span class="spec-value">2000+ позиций</span>
+          </div>
+          <a href="#" class="catalog-link">
+            <i class="fas fa-external-link-alt animated-icon"></i> Перейти в категорию
+          </a>
+        </div>
+      </div>
+      
+      <div class="catalog-item">
+        <div class="catalog-image">
+          <img src="/img/pic.jpg" alt="Разъемы и корпуса">
+        </div>
+        <div class="catalog-header">
+          <h3>Разъемы и корпуса</h3>
+          <div class="category-badge">ПОПУЛЯРНО</div>
+        </div>
+        <div class="catalog-content">
+          <div class="catalog-spec">
+            <span class="spec-label">Типы:</span>
+            <span class="spec-value">PCB, панельные, кабельные</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Бренды:</span>
+            <span class="spec-value">Molex, TE, Amphenol</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">В наличии:</span>
+            <span class="spec-value">4000+ позиций</span>
+          </div>
+          <a href="#" class="catalog-link">
+            <i class="fas fa-external-link-alt animated-icon"></i> Перейти в категорию
+          </a>
+        </div>
+      </div>
+      
+      <div class="catalog-item">
+        <div class="catalog-image">
+          <img src="/img/pic.jpg" alt="ПЛИС и память">
+        </div>
+        <div class="catalog-header">
+          <h3>ПЛИС и память</h3>
+          <div class="category-badge">ПОД ЗАКАЗ</div>
+        </div>
+        <div class="catalog-content">
+          <div class="catalog-spec">
+            <span class="spec-label">Типы:</span>
+            <span class="spec-value">FPGA, CPLD, память</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Бренды:</span>
+            <span class="spec-value">Xilinx, Intel, Micron</span>
+          </div>
+          <div class="catalog-spec">
+            <span class="spec-label">Сроки:</span>
+            <span class="spec-value">14-28 дней</span>
+          </div>
+          <a href="#" class="catalog-link">
+            <i class="fas fa-external-link-alt animated-icon"></i> Перейти в категорию
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem;">
+      <p class="section-subtitle">Полный каталог содержит более 3.5 млн позиций. Для поиска конкретных компонентов обратитесь к нашим менеджерам.</p>
+    </div>
+  </section>
+
+  <!-- Секция "Контакты" -->
+  <section id="contacts" class="section contacts-section">
+    <div class="section-header">
+      <h2 class="section-title">КОНТАКТЫ</h2>
+      <p class="section-subtitle">Свяжитесь с нами удобным способом. Мы всегда на связи.</p>
+    </div>
+    
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <h3 class="contact-title">ОБЩАЯ ИНФОРМАЦИЯ</h3>
+        <div class="contact-list">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt animated-icon"></i>
+            <div class="contact-info">
+              <div class="contact-label">Юридеский адрес</div>
+              <div class="contact-value">г. Москва, Ук-ий б-р, д. 5, помещ. 1/п, ком. 6 офис 5 </div>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-phone animated-icon"></i>
+            <div class="contact-info">
+              <div class="contact-label">Телефон</div>
+              <div class="contact-value">
+                <a href="tel:+74951234567">+7 969-720-82-31</a><br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">многоканальный</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-card">
+        <h3 class="contact-title">ЧАСЫ РАБОТЫ</h3>
+        <div class="contact-list">
+          <div class="contact-item">
+            <i class="fas fa-clock animated-icon"></i>
+            <div class="contact-info">
+              <div class="contact-label">Офис и отдел продаж</div>
+              <div class="contact-value">
+                Пн-Пт: 9:00-18:00 (МСК)<br>
+                Сб: 9:00-17:00 (МСК)<br>
+                Вс: выходной
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-card">
+        <h3 class="contact-title">ТЕХПОДДЕРЖКА</h3>
+        <div class="contact-list">
+          <div class="contact-item">
+            <i class="fas fa-headset animated-icon"></i>
+            <div class="contact-info">
+              <div class="contact-label">Техническая поддержка</div>
+              <div class="contact-value">
+                Круглосуточно, без выходных
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Секция "Оставить заявку" -->
+  <section id="request" class="section request-section">
+    <div class="section-header">
+      <h2 class="section-title">ОСТАВИТЬ ЗАЯВКУ</h2>
+      <p class="section-subtitle">Заполните форму, и наш менеджер свяжется с вами в течение 15 минут</p>
+    </div>
+    
+    <form class="request-form" id="requestForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="name">ВАШЕ ИМЯ *</label>
+          <input type="text" id="name" name="name" class="form-control" required placeholder="Иванов Иван">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="company">КОМПАНИЯ</label>
+          <input type="text" id="company" name="company" class="form-control" placeholder="ООО 'ТехноПром'">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="phone">КОНТАКТНЫЙ ТЕЛЕФОН *</label>
+          <input type="tel" id="phone" name="phone" class="form-control" required placeholder="+7 (XXX) XXX-XX-XX">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="email">ЭЛЕКТРОННАЯ ПОЧТА *</label>
+          <input type="email" id="email" name="email" class="form-control" required placeholder="example@domain.ru">
+        </div>
+        
+        <div class="form-group full-width">
+          <label class="form-label" for="message">СООБЩЕНИЕ ИЛИ СПИСОК КОМПОНЕНТОВ *</label>
+          <textarea id="message" name="message" class="form-control" rows="5" required placeholder="Опишите, какие компоненты вас интересуют (наименование, артикул, производитель, количество)..."></textarea>
+        </div>
+      </div>
+      
+      <button type="submit" class="submit-btn">
+        <i class="fas fa-paper-plane animated-icon"></i> ОТПРАВИТЬ ЗАЯВКУ
+      </button>
+      
+      <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">
+        Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
+      </p>
+    </form>
+  </section>
+</main>
+
+<!-- Футер --><footer class="footer">
+  <div class="footer-grid">
+    <!-- Колонка с логотипом и описанием -->
+    <div class="footer-column">
+      <div class="footer-logo">
+        <div class="logo-image-container">
+          <img src="/img/logo.png" class="logo-image" alt="Макрочип">
+        </div>
+        <div class="logo-text">
+          <span class="logo-main-txt">Макрочип</span>
+        </div>
+      </div>
+      <p class="footer-desc">
+        Официальный поставщик электронных компонентов.<br>
+        Качество, надежность и профессиональный подход.
+      </p>
+    </div>
+
+    <!-- Колонка с разделами -->
+    <div class="footer-column">
+      <h4 class="footer-title">РАЗДЕЛЫ</h4>
+      <ul class="footer-links">
+        <li><a href="#about"><i class="fas fa-chevron-right animated-icon"></i> О компании</a></li>
+        <li><a href="#catalog"><i class="fas fa-chevron-right animated-icon"></i> Каталог</a></li>
+        <li><a href="#contacts"><i class="fas fa-chevron-right animated-icon"></i> Контакты</a></li>
+        <li><a href="#request"><i class="fas fa-chevron-right animated-icon"></i> Оставить заявку</a></li>
+      </ul>
+    </div>
+
+    <!-- Колонка с контактами  -->
+    <div class="footer-column">
+      <h4 class="footer-title">КОНТАКТЫ</h4>
+      <ul class="footer-links">
+        <li><i class="fas fa-phone animated-icon"></i> +7-968-916-92-90</li>
+        <li><i class="fas fa-envelope animated-icon"></i> macrochip@macrochip.ru</li>
+    
+      </ul>
+    </div>
+
+    <!-- Колонка с документами (Опция) 
+    <div class="footer-column">
+      <h4 class="footer-title">ДОКУМЕНТЫ</h4>
+      <ul class="footer-links">
+        <li><a href="#"><i class="fas fa-chevron-right animated-icon"></i> Политика конфиденциальности</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right animated-icon"></i> Реквизиты</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right animated-icon"></i> Сертификат
+  </div>-->
+
+  <div class="footer-bottom">
+    <div class="footer-copyright">
+      © 2026 ООО «Макрочип». Все права защищены.
+      <span class="copyright-tag">ОФИЦИАЛЬНЫЙ ПОСТАВЩИК</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
