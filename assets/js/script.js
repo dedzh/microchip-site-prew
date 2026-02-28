@@ -45,7 +45,40 @@ function updateActiveNavLink() {
     }
   });
 }
+document.getElementById('requestForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
 
+  // Проверка, что капча заполнена
+  const captchaResponse = grecaptcha.getResponse();
+  if (!captchaResponse) {
+    alert('Пожалуйста, подтвердите, что вы не робот.');
+    return;
+  }
+
+  // Собираем данные формы
+  const formData = new FormData(this);
+  formData.append('captcha', captchaResponse);
+
+  try {
+    const response = await fetch('send.php', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert('Заявка успешно отправлена! Менеджер свяжется с вами в течение 15 минут.');
+      this.reset();
+      grecaptcha.reset(); // сброс капчи
+    } else {
+      alert('Ошибка: ' + (result.error || 'Не удалось отправить заявку. Попробуйте позже.'));
+    }
+  } catch (error) {
+    alert('Ошибка соединения с сервером. Попробуйте позже.');
+    console.error(error);
+  }
+});
 window.addEventListener('scroll', updateActiveNavLink);
 
 // Обработка формы

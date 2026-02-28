@@ -1,0 +1,7 @@
+RewriteRule ^includes/ - [F,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
