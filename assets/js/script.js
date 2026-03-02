@@ -57,7 +57,7 @@ document.getElementById('requestForm').addEventListener('submit', async function
 
   // Собираем данные формы
   const formData = new FormData(this);
-  formData.append('captcha', captchaResponse);
+ formData.append('g-recaptcha-response', captchaResponse);
 
   try {
     const response = await fetch('send.php', {
@@ -84,17 +84,12 @@ window.addEventListener('scroll', updateActiveNavLink);
 // Обработка формы
 document.getElementById('requestForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  
-  // Собираем данные формы
   const formData = new FormData(this);
   const data = Object.fromEntries(formData);
-  
-  // Показываем сообщение об успехе
   alert('ЗАЯВКА ПРИНЯТА • Ваша заявка отправлена. Менеджер свяжется с вами в течение 15 минут.');
-  
-  // Сбрасываем форму
   this.reset();
 });
+
 
 // Слайдер баннеров
 const slider = {

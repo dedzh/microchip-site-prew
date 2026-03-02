@@ -1,6 +1,6 @@
 {
-    "name": "macrochip/site",
-    "description": "Macrochip website",
+    "name": "microchip/site",
+    "description": "Microchip website",
     "type": "project",
     "require": {
         "phpmailer/phpmailer": "^6.9"

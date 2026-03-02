@@ -67,9 +67,9 @@
           </a>
         </div>
       </div>
-
+      
       <!-- Слайд 2 -->
-      <div class="slide" style="background-image: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%), url('/assets/img/banner2.jpg');">
+      <div class="slide" style="background-image: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%), url('/assets/img/img/banner2.jpg');">
         <div class="slide-content">
           <div class="slide-text">
             <div class="slide-line slide-line1">ПОСТАВЩИК ЭЛЕКТРОННЫХ</div>
@@ -80,27 +80,33 @@
           </a>
         </div>
       </div>
-
-      <!-- Слайд 3 с видео -->
-      <div class="slide" id="videoSlide">
-        <video class="slide-video" autoplay muted loop playsinline poster="/assets/img/img/banner3.png">
-          <source src="/assets/img/img/ban3.mp4" type="video/mp4">
-          Ваш браузер не поддерживает видео.
-        </video>
-        <div class="slide-overlay" style="background: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%);"></div>
-        <div class="slider-grid-overlay"></div>
-        <div class="slider-scan-line"></div>
-        <div class="slide-content">
-          <div class="slide-text">
-            <div class="slide-line slide-line1">БОЛЕЕ 3.5 МЛН</div>
-            <div class="slide-linemin slide-line2">позиций в каталоге</div>
-          </div>
-          <a href="#catalog" class="slide-btn">
-            <i class="fas fa-search animated-icon"></i> Подобрать
-          </a>
-        </div>
-      </div>
-
+      
+      <!-- Слайд 3 -->
+<div class="slide" id="videoSlide">
+  <!-- Фоновое видео -->
+  <video class="slide-video" autoplay muted loop playsinline poster="/assets/img/img/banner3.png">
+    <source src="/assets/img/img/ban3.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  
+  <!-- Затемнение справа налево (градиент) поверх видео -->
+  <div class="slide-overlay" style="background: linear-gradient(to right, rgba(0, 8, 20, 0.9) 0%, rgba(0, 8, 20, 0.7) 30%, rgba(0, 8, 20, 0.4) 60%, rgba(0, 8, 20, 0) 100%);"></div>
+  
+  <!-- Дополнительная сетка/эффекты (опционально) -->
+  <div class="slider-grid-overlay"></div>
+  <div class="slider-scan-line"></div>
+  
+  <!-- Контент слайда -->
+  <div class="slide-content">
+    <div class="slide-text">
+      <div class="slide-line slide-line1">БОЛЕЕ 3.5 МЛН</div>
+      <div class="slide-linemin slide-line2">позиций в каталоге</div>
+    </div>
+    <a href="#catalog" class="slide-btn">
+      <i class="fas fa-search animated-icon"></i> Подобрать
+    </a>
+  </div>
+</div>
       <!-- Стрелки навигации -->
       <button class="slider-nav prev">
         <i class="fas fa-chevron-left"></i>
@@ -159,7 +165,7 @@
     </div>
   </section>
 
-  <!-- Секция "Каталог" -->
+  <!-- Секция "Каталог" (без изображений) -->
   <section id="catalog" class="section">
     <div class="section-header">
       <h2 class="section-title">КАТАЛОГ</h2>
@@ -167,11 +173,8 @@
     </div>
 
     <div class="catalog-grid">
-      <!-- 1. Встраиваемые системы (бывшие Микроконтроллеры) -->
+      <!-- 1. Встраиваемые системы -->
       <div class="catalog-item">
-        <div class="catalog-image">
-          <img src="/assets/img/img/pic.jpg" alt="Встраиваемые системы">
-        </div>
         <div class="catalog-header">
           <h3>Встраиваемые системы</h3>
           <div class="category-badge">ПОПУЛЯРНО</div>
@@ -195,11 +198,8 @@
         </div>
       </div>
 
-      <!-- 2. Пассивные компоненты (без изменений) -->
+      <!-- 2. Пассивные компоненты -->
       <div class="catalog-item">
-        <div class="catalog-image">
-          <img src="/assets/img/img/pic.jpg" alt="Пассивные компоненты">
-        </div>
         <div class="catalog-header">
           <h3>Пассивные компоненты</h3>
           <div class="category-badge">СКЛАД</div>
@@ -223,11 +223,8 @@
         </div>
       </div>
 
-      <!-- 3. Модули и блоки управления (Siemens) (бывшая Силовая электроника) -->
+      <!-- 3. Модули и блоки управления (Siemens) -->
       <div class="catalog-item">
-        <div class="catalog-image">
-          <img src="/assets/img/img/pic.jpg" alt="Модули и блоки управления">
-        </div>
         <div class="catalog-header">
           <h3>Модули и блоки управления (Siemens)</h3>
           <div class="category-badge">НОВИНКА</div>
@@ -251,11 +248,8 @@
         </div>
       </div>
 
-      <!-- 4. Датчики и сенсорные модули (бывшая Оптоэлектроника) -->
+      <!-- 4. Датчики и сенсорные модули -->
       <div class="catalog-item">
-        <div class="catalog-image">
-          <img src="/assets/img/img/pic.jpg" alt="Датчики и сенсорные модули">
-        </div>
         <div class="catalog-header">
           <h3>Датчики и сенсорные модули</h3>
           <div class="category-badge">СКЛАД</div>
@@ -279,11 +273,8 @@
         </div>
       </div>
 
-      <!-- 5. Соединители и корпуса (без изменений) -->
+      <!-- 5. Соединители и корпуса -->
       <div class="catalog-item">
-        <div class="catalog-image">
-          <img src="/assets/img/img/pic.jpg" alt="Соединители и корпуса">
-        </div>
         <div class="catalog-header">
           <h3>Соединители и корпуса</h3>
           <div class="category-badge">ПОПУЛЯРНО</div>
@@ -307,11 +298,8 @@
         </div>
       </div>
 
-      <!-- 6. Программируемая логика и память (бывшая ПЛИС и память) - сроки удалены -->
+      <!-- 6. Программируемая логика и память -->
       <div class="catalog-item">
-        <div class="catalog-image">
-          <img src="/assets/img/pic.jpg" alt="Программируемая логика и память">
-        </div>
         <div class="catalog-header">
           <h3>Программируемая логика и память</h3>
           <div class="category-badge">ПОД ЗАКАЗ</div>
@@ -325,7 +313,6 @@
             <span class="spec-label">Бренды:</span>
             <span class="spec-value">Xilinx, Intel, Micron</span>
           </div>
-          <!-- Строка со сроками удалена -->
           <a href="#request" class="catalog-link">
             <i class="fas fa-external-link-alt animated-icon"></i> Запросить подбор
           </a>
@@ -360,7 +347,7 @@
       <div class="term-item">
         <i class="fas fa-credit-card term-icon"></i>
         <h4>Способы оплаты</h4>
-        <p>Безналичный расчёт (с НДС), оплата по счету для юрлиц и ИП.</p>
+        <p>Безналичный расчёт, оплата по счету для юрлиц и ИП.</p>
       </div>
     </div>
 
@@ -381,8 +368,17 @@
             <div class="contact-info">
               <div class="contact-label">Телефон</div>
               <div class="contact-value">
-                <a href="tel:+79697208231">+7 969-720-82-31</a><br>
+                <a href="tel:+79697208231">+7 969-720-82-31</a> <br>
                 <span style="font-size: 0.85rem; color: var(--text-muted);">многоканальный</span>
+              </div>
+            </div>
+
+            <i class="fas fa-envelope animated-icon"></i>
+            <div class="contact-info">
+            <div class="contact-label">Почта</div>
+              <div class="contact-value">
+                <a href="mail:info@macrochip.ru">info@macrochip.ru</a><br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);"></span>
               </div>
             </div>
           </div>
@@ -423,7 +419,7 @@
     </div>
   </section>
 
-  <!-- Секция "Оставить заявку" (с капчей) -->
+  <!-- Секция "Оставить заявку" -->
   <section id="request" class="section request-section">
     <div class="section-header">
       <h2 class="section-title">ОСТАВИТЬ ЗАЯВКУ</h2>
@@ -439,7 +435,7 @@
 
         <div class="form-group">
           <label class="form-label" for="company">КОМПАНИЯ</label>
-          <input type="text" id="company" name="company" class="form-control" placeholder="ООО 'ТехноПром'">
+          <input type="text" id="company" name="company" class="form-control" placeholder="ООО'ТехноПром'">
         </div>
 
         <div class="form-group">
@@ -457,7 +453,7 @@
           <textarea id="message" name="message" class="form-control" rows="5" required placeholder="Опишите, какие компоненты вас интересуют (наименование, артикул, производитель, количество)..."></textarea>
         </div>
 
-        <!-- Блок reCAPTCHA  -->
+        <!-- Блок reCAPTCHA -->
         <div class="form-group full-width">
           <div class="g-recaptcha" data-sitekey="6LcOnnksAAAAAJ4aox-lZlBPbMPQqs7bOY2nI3q_"></div>
         </div>
@@ -474,7 +470,7 @@
   </section>
 </main>
 
-<!-- Футер (исправлена структура) -->
+<!-- Футер -->
 <footer class="footer">
   <div class="footer-grid">
     <!-- Колонка с логотипом и описанием -->
@@ -509,10 +505,10 @@
       <h4 class="footer-title">КОНТАКТЫ</h4>
       <ul class="footer-links">
         <li><i class="fas fa-phone animated-icon"></i> +7-968-916-92-90</li>
-        <li><i class="fas fa-envelope animated-icon"></i> macrochip@macrochip.ru</li>
+        <li><i class="fas fa-envelope animated-icon"></i> info@macrochip.ru</li>
       </ul>
     </div>
-  </div> 
+  </div>
 
   <div class="footer-bottom">
     <div class="footer-copyright">
@@ -521,7 +517,6 @@
     </div>
   </div>
 </footer>
-
 
 </body>
 </html>
