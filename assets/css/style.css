@@ -1,3 +1,9 @@
+  /**
+ * Copyright (c) 2026 Темирова Ангелина. All rights reserved.
+ * Viewing and familiarization only. Any other use is prohibited.
+ * Contact: temirovaangelina00@gmail.com
+ */
+  
   :root {
       --primary: #00d9ff;
       --primary-dark: #00a3cc;
@@ -969,31 +975,9 @@
       box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
     }
 
-    /* Системные сообщения */
-    .system-message {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 8, 20, 0.95);
-      border-top: 1px solid var(--primary);
-      padding: 0.8rem;
-      z-index: 1000;
-    }
-
-    .message-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--primary);
-      text-align: center;
-    }
 
     /* Мобильная адаптация */
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
       .navbar {
         padding: 0.5rem 1rem;
       }
@@ -1040,7 +1024,7 @@
       }
       
       .logo-image {
-        height: 40px;
+        height: 65px;
       }
       
       .hero-slider {
@@ -1101,7 +1085,7 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
       .stats-grid {
         grid-template-columns: 1fr;
       }

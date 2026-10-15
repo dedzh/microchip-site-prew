@@ -1,4 +1,9 @@
 // Плавная прокрутка для якорных ссылок
+/**
+ * Copyright (c) 2026 Темирова Ангелина. All rights reserved.
+ * Viewing and familiarization only. Any other use is prohibited.
+ * Contact: temirovaangelina00@gmail.com
+ */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -86,7 +91,7 @@ document.getElementById('requestForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const formData = new FormData(this);
   const data = Object.fromEntries(formData);
-  alert('ЗАЯВКА ПРИНЯТА • Ваша заявка отправлена. Менеджер свяжется с вами в течение 15 минут.');
+ 
   this.reset();
 });
 

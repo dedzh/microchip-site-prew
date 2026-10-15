@@ -1,6 +1,11 @@
 <?php
-header('Content-Type: application/json');
+/**
+ * Copyright (c) 2026 Темирова Ангелина. All rights reserved.
+ * Viewing and familiarization only. Any other use is prohibited.
+ * Contact: temirovaangelina00@gmail.com
+ */
 
+header('Content-Type: application/json');
 // Импортируем классы PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,8 +21,8 @@ function debug_log($message)
 }
 debug_log('Запрос получен. POST: ' . print_r($_POST, true));
 
-$recaptchaSecret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
-
+// Секретный ключ reCAPTCHA для домена (замените на настоящий)
+$recaptchaSecret = '1234566789'; // тестовый, нужно заменить!
 
 // Получаем данные из POST
 $name = trim($_POST['name'] ?? '');
@@ -40,7 +45,7 @@ if (empty($captcha)) {
 }
 
 // Верификация капчи через Google
-$url = 'https://www.google.com/recaptcha/api/siteverify';
+$url = '';
 $data = [
     'secret' => $recaptchaSecret,
     'response' => $captcha,
@@ -59,13 +64,18 @@ $context = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 if ($result === false) {
     debug_log('Ошибка соединения с Google reCAPTCHA');
-    if (!$isLocalhost) {
-        echo json_encode(['success' => false, 'error' => 'Ошибка проверки капчи. Попробуйте позже.']);
-        exit;
-    }
+    echo json_encode(['success' => false, 'error' => 'Ошибка проверки капчи. Попробуйте позже.']);
+    exit;
 }
 
+$responseKeys = json_decode($result, true);
+if (intval($responseKeys['success']) !== 1) {
+    debug_log('Капча не пройдена: ' . print_r($responseKeys, true));
+    echo json_encode(['success' => false, 'error' => 'Капча не пройдена. Попробуйте ещё раз.']);
+    exit;
+}
 
+// Сохранение заявки в файл
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) {
     mkdir($logDir, 0755, true);
@@ -73,31 +83,28 @@ if (!is_dir($logDir)) {
 $logEntry = date('Y-m-d H:i:s') . " | Имя: $name | Компания: $company | Телефон: $phone | Email: $email | Сообщение: " . str_replace("\n", " ", $messageText) . PHP_EOL;
 file_put_contents($logDir . '/requests.log', $logEntry, FILE_APPEND | LOCK_EX);
 
-
+// Отправка на почту через PHPMailer
 $autoloadPath = __DIR__ . '/vendor/autoload.php';
 if (file_exists($autoloadPath)) {
     require_once $autoloadPath;
 
-
     if (class_exists('PHPMailer\PHPMailer\PHPMailer')) {
         $mail = new PHPMailer(true);
         try {
-            // Настройки SMTP 
+            // Настройки SMTP поставить реальную почту 
             $mail->isSMTP();
             $mail->Host       = 'mail.hosting.reg.ru';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'info@macrochip.ru';
-            $mail->Password   = 'Ksenya198210_10'; //засунь это в константы в файлах
+            $mail->Username   = 'infoexample@mail.ru';
+            $mail->Password   = "password";
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port       = 465;
 
-            // Отправитель и получатель
-            $mail->setFrom('info@macrochip.ru', 'Макрочип');
-            $mail->addAddress('info@macrochip.ru');
+            $mail->setFrom('infoexample@mail.ru', 'Ромашка');
+            $mail->addAddress('infoexample@mail.ru');
 
-            // Контент
             $mail->CharSet = 'UTF-8';
-            $mail->Subject = 'Новая заявка с сайта Макрочип';
+            $mail->Subject = 'Новая заявка с сайта';
             $mail->Body    = "Имя: $name\nКомпания: $company\nТелефон: $phone\nEmail: $email\nСообщение:\n$messageText";
             $mail->isHTML(false);
 
@@ -117,3 +124,4 @@ if (file_exists($autoloadPath)) {
 } else {
     debug_log('vendor/autoload.php не найден. Установите PHPMailer через Composer.');
 }
+echo json_encode(['success' => true, 'message' => 'Заявка принята. Менеджер свяжется с вами в течение 15 минут.']);

@@ -1,14 +1,14 @@
 {
     "name": "microchip/site",
-    "description": "Microchip website",
+    "description": "Corporate landing for an electronics supplier — brandbook, logo, design, frontend & backend",
     "type": "project",
     "require": {
         "phpmailer/phpmailer": "^6.9"
     },
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
-            "name": "dedzh",
+            "name": "dedzh/Angelina Temirova",
             "email": "temirovaangelina00@gmail.com"
         }
     ]
